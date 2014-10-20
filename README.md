@@ -14,21 +14,22 @@ have an excellent tool for that: [JMH](http://openjdk.java.net/projects/code-too
 
 ## How the project is organized
 
-Each benchmark suite is stored in single class. Every benchmark class explains
-in java docs what the goal is, i.e. what is going to be measured and why.
-Each benchmark suite should have at least two individual benchmark methods.
+Each benchmark suite is stored in a single class with a name that _must_
+end with `Benchmark`. Every benchmark class explains in java docs what the
+goal is, i.e. what is going to be measured and why. Each benchmark suite
+should have at least two individual benchmark methods.
 
 Moreover, each java doc will also contain the actual benchmark results.
  
 ## How to run the benchmarks?
  
-Easy :) The project is build with [Gradle](http://www.gradle.org/). Each benchmark
-has it's own task, named as `runFooBenchmark`. So all you have to do is to 
-invoke that task from command line:
+Easy :) The project is build with [Gradle](http://www.gradle.org/).
+Benchmarks are run just by passing the class name. Since class name must
+end with `Benchmark`, Gradle will recognize it and run it. For example:
 
-    gradlew clean runFooBenchmark
+    gradlew clean FooBenchmark
 
-Running `clean` task is optional.
+Running `clean` task first is optional.
 
 When running benchmarks, try not to use your computer for anything else.
 Try to minimize the number of background tasks.

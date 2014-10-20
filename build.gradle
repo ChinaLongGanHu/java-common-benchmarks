@@ -43,12 +43,11 @@ build.doLast {
 	tasks.shadowJar.execute()
 }
 
-tasks.addRule("Pattern: run<ClassName>: Run benchmark.") { String className ->
-	if (className.startsWith("run")) {
-		println "\nRunning benchmark: " + (className - 'run') + "\n"
+tasks.addRule("Pattern: <ClassName>Benchmark : Run benchmark.") { String className ->
+	if (className.endsWith("Benchmark")) {
+		println "\nRunning benchmark: " + className + "\n"
 
 		task "$className"(type: JavaExec, dependsOn: 'build') {
-			className = className - 'run'
 			main = '-jar'
 			args = jhmJar + ['.' + className + '.*']
 		}

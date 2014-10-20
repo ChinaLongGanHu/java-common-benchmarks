@@ -1,4 +1,53 @@
-java-common-benchmarks
-======================
+Java Common Benchmarks (JCB)
+============================
 
-Java benchmarks - answers on common performance concerns.
+We've seen many Java code snippets that suppose to improve some performance.
+In many cases, there was _NO_ real improvement with the additional code.
+Instead, the code gets bigger for no real reason.
+
+With this project we will try to bust or prove some common performance myths.
+
+## How do we measure?
+
+It is not easy to write micro-benchmark code. Fortunately (and finally), we
+have an excellent tool for that: [JMH](http://openjdk.java.net/projects/code-tools/jmh/).
+
+## How the project is organized
+
+Each benchmark suite is stored in single class. Every benchmark class explains
+in java docs what the goal is, i.e. what is going to be measured and why.
+Each benchmark suite should have at least two individual benchmark methods.
+
+Moreover, each java doc will also contain the actual benchmark results.
+ 
+## How to run the benchmarks?
+ 
+Easy :) The project is build with [Gradle](http://www.gradle.org/). Each benchmark
+has it's own task, named as `runFooBenchmark`. So all you have to do is to 
+invoke that task from command line:
+
+    gradlew clean runFooBenchmark
+
+Running `clean` task is optional.
+
+When running benchmarks, try not to use your computer for anything else.
+Try to minimize the number of background tasks.
+
+## What does the values means?
+
+Values of individual benchmark are **not** relevant! What matter is the
+_relationship_ between the individual benchmarks and the standard deviation
+of the values. Only by comparing the benchmark values we can say if one
+has better performance then the other.
+
+## Use it with caution!
+
+Don't take results as written in a stone. Think! Sometimes the input values
+(_volume_ and the _content_) dictates the performance results.
+
+## Contribute
+
+Feel free to add your own benchmarks. Let us know if you want us to measure
+something.
+
+Java benchmarks - answers on common performance concerns!

@@ -19,21 +19,18 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'com.github.johnrengelman.shadow'
 
+sourceCompatibility = 1.8
+
 ext {
-	jhm = [
-			threads: 2,
-			iterations: 10,
-			forks: 2,
-			warmup_iterations: 3
-	]
 	jhmJar  = ['build/libs/jcb-all.jar']
-	jhmArgs = [
-				'-wi', "3",				// warmup iterations
-				'-i',  "10",			// iterations
-				'-f',  "2",				// forks
-				'-t',  "2"				// threads
-			]
 }
+
+dependencies {
+	compile 'org.openjdk.jmh:jmh-core:1.1.1'
+	compile 'org.openjdk.jmh:jmh-generator-annprocess:1.1.1'
+}
+
+// --- tasks ------------------------------------------------------------------
 
 jar {
 	archivesBaseName = 'jcb'
@@ -46,20 +43,17 @@ build.doLast {
 	tasks.shadowJar.execute()
 }
 
-dependencies {
-	compile 'org.openjdk.jmh:jmh-core:0.9.5'
-	compile 'org.openjdk.jmh:jmh-generator-annprocess:0.9.5'
+tasks.addRule("Pattern: run<ClassName>: Run benchmark.") { String className ->
+	if (className.startsWith("run")) {
+		println "\nRunning benchmark: " + (className - 'run') + "\n"
+
+		task "$className"(type: JavaExec, dependsOn: 'build') {
+			className = className - 'run'
+			main = '-jar'
+			args = jhmJar + ['.' + className + '.*']
+		}
+	}
 }
-
-sourceCompatibility = 1.8
-
-// --- run --------------------------------------------------------------------
-
-task runClassMapBenchmark(type: JavaExec, dependsOn: 'build') {
-	main = '-jar'
-	args = jhmJar + ['.*ClassMapBenchmark.*'] + jhmArgs
-}
-
 
 // --- wrapper ----------------------------------------------------------------
 

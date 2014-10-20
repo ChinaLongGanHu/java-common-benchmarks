@@ -28,6 +28,9 @@ import java.util.concurrent.TimeUnit;
  *
  * <pre>
 
+ # VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/bin/java
+ # VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+
  Benchmark                                                  Mode  Samples    Score   Error   Units
  c.o.j.c.ForLoopOverListBenchmark.forInLoop                thrpt       20  232.383 ± 3.718  ops/ms
  c.o.j.c.ForLoopOverListBenchmark.forIndexLoop             thrpt       20  239.481 ± 1.672  ops/ms

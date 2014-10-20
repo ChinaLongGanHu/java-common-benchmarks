@@ -29,6 +29,9 @@ import java.util.concurrent.TimeUnit;
  * </ul>
  * <pre>
 
+ # VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/bin/java
+ # VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+
  Benchmark                             Mode  Samples      Score     Error   Units
  c.o.j.m.SineBenchmark.lookupTable    thrpt       20  71645.755 ± 723.554  ops/ms
  c.o.j.m.SineBenchmark.math           thrpt       20   5236.416 ± 662.827  ops/ms

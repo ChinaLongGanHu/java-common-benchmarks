@@ -33,7 +33,9 @@ import java.util.concurrent.TimeUnit;
  c.o.j.m.SineBenchmark.lookupTable    thrpt       20  71645.755 ± 723.554  ops/ms
  c.o.j.m.SineBenchmark.math           thrpt       20   5236.416 ± 662.827  ops/ms
 
- </pre>
+ * </pre>
+ * <p>
+ * Conclusion: lookup table is much faster, but less precise.
  */
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)

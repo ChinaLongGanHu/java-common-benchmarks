@@ -24,7 +24,6 @@ public class DataGenerator {
 		return list;
 	}
 
-
 	/**
 	 * Returns array of random uniformly distributed integers with specified size.
 	 */
@@ -33,6 +32,19 @@ public class DataGenerator {
 
 		for (int i = 0; i <size; i++) {
 			array[i] = RND.nextInt();
+		}
+
+		return array;
+	}
+
+	/**
+	 * Returns array of random uniformly distributed integers with specified size.
+	 */
+	public static int[] arrayOfGaussiandRandomInts(int size) {
+		int[] array = new int[size];
+
+		for (int i = 0; i <size; i++) {
+			array[i] = (int) (RND.nextGaussian() * Integer.MAX_VALUE);
 		}
 
 		return array;

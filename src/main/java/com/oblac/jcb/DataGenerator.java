@@ -12,14 +12,29 @@ public class DataGenerator {
 
 	/**
 	 * Returns list of random integers with specified size.
+	 * Values are uniformly distributed.
 	 */
 	public static ArrayList<Integer> listOfRandomIntegers(int size) {
 		ArrayList<Integer> list = new ArrayList<>(size);
 
-		for(int i = 0; i <10000; i++) {
-			list.add(Integer.valueOf(RND.nextInt(size)));
+		for (int i = 0; i <size; i++) {
+			list.add(Integer.valueOf(RND.nextInt()));
 		}
 
 		return list;
+	}
+
+
+	/**
+	 * Returns array of random uniformly distributed integers with specified size.
+	 */
+	public static int[] arrayOfRandomInts(int size) {
+		int[] array = new int[size];
+
+		for (int i = 0; i <size; i++) {
+			array[i] = RND.nextInt();
+		}
+
+		return array;
 	}
 }

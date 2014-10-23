@@ -31,25 +31,27 @@ import java.util.concurrent.TimeUnit;
  # VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/bin/java
  # VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
 
- Benchmark                                                 (size)   Mode  Samples    Score   Error   Units
- c.o.j.c.ForLoopOverListBenchmark.forInLoop                     1  thrpt       20  262.586 ± 3.108  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forInLoop                    10  thrpt       20  263.901 ± 2.660  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forInLoop                   100  thrpt       20  262.818 ± 4.625  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forInLoop                  1000  thrpt       20  238.309 ± 3.818  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forInLoop                 10000  thrpt       20  230.548 ± 5.020  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                  1  thrpt       20  277.934 ± 3.958  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                 10  thrpt       20  276.160 ± 3.233  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                100  thrpt       20  276.219 ± 3.745  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexLoop               1000  thrpt       20  247.458 ± 4.571  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexLoop              10000  thrpt       20  239.914 ± 2.185  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop         1  thrpt       20  279.704 ± 3.953  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop        10  thrpt       20  279.319 ± 4.056  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop       100  thrpt       20  280.749 ± 2.809  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop      1000  thrpt       20  249.631 ± 1.410  ops/ms
- c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop     10000  thrpt       20  243.168 ± 3.077  ops/ms
+ Benchmark                                                 (size)   Mode  Samples       Score       Error   Units
+ c.o.j.c.ForLoopOverListBenchmark.forInLoop                     1  thrpt       20  403306.517 ± 24245.930  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forInLoop                    10  thrpt       20  159097.023 ±  1722.893  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forInLoop                   100  thrpt       20   24753.593 ±   474.777  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forInLoop                  1000  thrpt       20    2623.022 ±    66.069  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forInLoop                 10000  thrpt       20     231.745 ±     4.344  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                  1  thrpt       20  543487.553 ± 26839.325  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                 10  thrpt       20  170378.505 ±  1989.683  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexLoop                100  thrpt       20   26318.742 ±   304.622  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexLoop               1000  thrpt       20    2755.581 ±    40.017  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexLoop              10000  thrpt       20     240.437 ±     3.641  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop         1  thrpt       20  507417.348 ± 11280.308  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop        10  thrpt       20  174256.254 ±  2394.436  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop       100  thrpt       20   26924.880 ±   261.776  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop      1000  thrpt       20    2800.936 ±    25.993  ops/ms
+ c.o.j.c.ForLoopOverListBenchmark.forIndexOptimizedLoop     10000  thrpt       20     244.841 ±     2.431  ops/ms
+
  * </pre>
  * <p>
- * Conclusion: Enhanced loop if as fast as indexed loop, if not faster.
+ * Conclusion: Enhanced loop if as fast as indexed loop. Actually, for smaller loops (<10 elements),
+ * it is even faster!
  */
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)

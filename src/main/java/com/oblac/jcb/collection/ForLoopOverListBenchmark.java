@@ -16,6 +16,7 @@ import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,8 +51,10 @@ import java.util.concurrent.TimeUnit;
 
  * </pre>
  * <p>
- * Conclusion: Enhanced loop if as fast as indexed loop. Actually, for smaller loops (<10 elements),
- * it is even faster!
+ * Conclusion: For index loop is faster then enhanced loop, especially for smaller volumes (up to 10).
+ * But the for index loop may not be the good way to iterate some list implementations, like
+ * LinkedList.
+ * todo measure index loop over linked list
  */
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -66,10 +69,12 @@ public class ForLoopOverListBenchmark {
 	private int size;
 
 	private ArrayList<Integer> arrayList;
+	private LinkedList<Integer> linkedList;
 
 	@Setup
 	public void setup() {
 		arrayList = DataGenerator.listOfRandomIntegers(size);
+		linkedList = new LinkedList<>(arrayList);
 	}
 
 	@Benchmark
@@ -86,6 +91,16 @@ public class ForLoopOverListBenchmark {
 		int count = 0;
 		for (int i = 0; i < arrayList.size(); i++) {
 			Integer integer = arrayList.get(i);
+			count += integer.intValue();
+		}
+		bh.consume(count);
+	}
+
+	@Benchmark
+	public void forIndexLinkedLoop(Blackhole bh) {
+		int count = 0;
+		for (int i = 0; i < linkedList.size(); i++) {
+			Integer integer = linkedList.get(i);
 			count += integer.intValue();
 		}
 		bh.consume(count);
